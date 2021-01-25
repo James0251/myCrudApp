@@ -46,4 +46,8 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- Пагинация   --}}
+    {{ $posts->links() }}
+
 @endsection
