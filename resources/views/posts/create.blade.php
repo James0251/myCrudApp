@@ -3,9 +3,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            @if ($message = Session::get('danger'))
+            {{-- Вывод ошибок валидации --}}
+            @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>{{ $message }}</strong>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
                 <form action="{{ action('PostController@store') }}" method="post">

@@ -35,6 +35,12 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        // Валидация данных
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'author' => 'required'
+        ]);
         $name = $request->get('name');
         $detail = $request->get('detail');
         $author = $request->get('author');
@@ -64,6 +70,12 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Валидация данных
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'author' => 'required'
+        ]);
         $name = $request->get('name');
         $detail = $request->get('detail');
         $author = $request->get('author');
@@ -71,7 +83,7 @@ class PostController extends Controller
         if ($posts) {
             $red = redirect('posts')->with('success', 'Данные были обновлены');
         }else {
-            $red = redirect('posts/edit'.$id)->with('danger', 'Произошла ошибка обновления. Проверьте данные');
+            $red = redirect('posts/'.$id.'/edit')->with('danger', 'Произошла ошибка. Вы не внесли никаких изменений!');
         }
         return $red;
     }

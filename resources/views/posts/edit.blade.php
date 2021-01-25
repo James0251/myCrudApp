@@ -8,6 +8,16 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
+                {{-- Ошибки валидации --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             @foreach($posts as $post)
                     <form action="{{ action('PostController@update', $post->id) }}" method="post">
                         @csrf
