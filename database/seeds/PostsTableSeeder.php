@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('ru_RU');
-        foreach (range(1, 5) as $index){
+        foreach (range(1, 15) as $index){
             DB::table('posts')->insert([
                 'name' => $faker->jobTitle,
                 'detail' => $faker->text,

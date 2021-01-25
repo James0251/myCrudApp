@@ -11,7 +11,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = DB::table('posts')->paginate(3);
+        $posts = DB::table('posts')->paginate(4);
         return view('posts.index', compact('posts'));
     }
 
@@ -82,5 +82,11 @@ class PostController extends Controller
         $posts = DB::delete('delete from posts where id=?', [$id]);
         $red = redirect('posts');
         return $red;
+    }
+
+    public function deleteAll(Request $request) {
+        $ids = $request->get('ids');
+        $dbs = DB::delete('delete from posts where id in ('.implode(",", $ids).')');
+        return redirect('posts');
     }
 }

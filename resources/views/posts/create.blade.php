@@ -20,8 +20,9 @@
                     </div>
                     <div class="from-group">
                         <label for="author">Author</label>
-                        <input class="form-control" type="text" name="author">
+                        <input class="form-control" type="text" name="author"><br/>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Send</button>
                 </form>
         </div>

@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 Route::get('/posts', 'PostController@index');
 Route::get('/search', 'PostController@search');
+Route::delete('/deleteall', 'PostController@deleteAll');
 Route::resource('posts', 'PostController');

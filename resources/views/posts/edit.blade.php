@@ -22,10 +22,10 @@
                         </div>
                         <div class="from-group">
                             <label for="author">Author</label>
-                            <input class="form-control" type="text" name="author" value="{{ $post->author  }}">
+                            <input class="form-control" type="text" name="author" value="{{ $post->author  }}"><br/>
                         </div>
                         <button type="submit" class="btn btn-warning">Update</button>
-                        <a href="{{ action('PostController@index') }}" class="btn btn-default">Back</a>
+                        <a href="{{ action('PostController@index') }}" class="btn btn-primary">Back</a>
                     </form>
             @endforeach
         </div>
