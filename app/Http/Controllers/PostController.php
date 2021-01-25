@@ -43,20 +43,32 @@ class PostController extends Controller
     }
 
 
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $posts = DB::select('select * from posts where id=?', [$id]);
+        return view('posts.edit', compact('posts'));
     }
 
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $name = $request->get('name');
+        $detail = $request->get('detail');
+        $author = $request->get('author');
+        $posts = DB::update('update posts set `name`=?, detail=?, author=? where id=?', [$name, $detail, $author, $id]);
+        if ($posts) {
+            $red = redirect('posts')->with('success', 'Данные были обновлены');
+        }else {
+            $red = redirect('posts/edit'.$id)->with('danger', 'Произошла ошибка обновления. Проверьте данные');
+        }
+        return $red;
     }
 
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $posts = DB::delete('delete from posts where id=?', [$id]);
+        $red = redirect('posts');
+        return $red;
     }
 }
