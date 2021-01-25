@@ -18,13 +18,22 @@ class PostController extends Controller
 
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
 
     public function store(Request $request)
     {
-        //
+        $name = $request->get('name');
+        $detail = $request->get('detail');
+        $author = $request->get('author');
+        $posts = DB::insert('insert into posts(`name`, detail, author) value (?, ?, ?)', [$name, $detail, $author]);
+        if ($posts) {
+            $red = redirect('posts')->with('success', 'Данные были добавлены');
+        }else {
+            $red = redirect('posts/create')->with('danger', 'Произошла ошибка, проверьте данные');
+        }
+        return $red;
     }
 
 
