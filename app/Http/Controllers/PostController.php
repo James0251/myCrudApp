@@ -21,6 +21,17 @@ class PostController extends Controller
         return view('posts.create');
     }
 
+    // Функция поиска
+    public function search(Request $request) {
+        $search = $request->get('search');
+    // Ищем по названию поста, по описанию или по имени автора
+        $posts = DB::table('posts')->where('name', 'like', '%'.$search.'%')
+            ->orWhere('detail', 'like', '%'.$search.'%')
+            ->orWhere('author', 'like', '%'.$search.'%')
+            ->paginate(3);
+        return view('posts.index', compact('posts'));
+    }
+
 
     public function store(Request $request)
     {
